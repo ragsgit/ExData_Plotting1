@@ -22,7 +22,7 @@ if (!file.exists(dataFile)) {
   stop("Fatal error, file not downloaded or unzip issue!")
 }
 message("File data being loaded into memory...")
-# read data from unzip fie household_power_consumption.txt,  NA = "?"
+# read data from unzip file dataFile,  NA = "?"
 # we will read the whole data and then subset later
 eda1data_full <- read.table(dataFile, header=TRUE, na.strings="?", sep=";")
 # subset the required data
@@ -37,7 +37,7 @@ eda1data_subset$DateTime <- as.POSIXct(dateTime)
 
 # Just plot as line chart per assignment
 # using y ~ x
-plot(eda1data_subset$DateTime, eda1data_subset$Global_active_power, ylab = "Global Active Power (kilowatts)", type = "l")
+plot(eda1data_subset$DateTime, eda1data_subset$Global_active_power, xlab = "", ylab = "Global Active Power (kilowatts)", type = "l")
 
 # export to a png file by copying
 message ("Copying plot to file")

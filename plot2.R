@@ -3,6 +3,7 @@
 
 ## Constants that can be easily changed.
 # Data file link is as of Oct. 2017, may change
+projectDir <- "~/work/coursera/graphs/ExData_Plotting1"
 fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 destFile <- "eda1data.zip"
 dataFile <- "household_power_consumption.txt"
@@ -10,6 +11,7 @@ dateFrom <- "1/2/2007"
 dateTo   <- "2/2/2007"
 outPutFile <- "plot2.png"
 
+setwd(projectDir)
 if (!file.exists(dataFile)) {
   message("File not found, downloading...")
   download.file(fileUrl, destfile= destFile, method="curl")
@@ -21,14 +23,18 @@ if (!file.exists(dataFile)) {
 if (!file.exists(dataFile)) {
   stop("Fatal error, file not downloaded or unzip issue!")
 }
-message("File data being loaded into memory...")
+
 # read data from unzip file dataFile,  NA = "?"
 # we will read the whole data and then subset later
-eda1data_full <- read.table(dataFile, header=TRUE, na.strings="?", sep=";")
-# subset the required data
-# select the 2 day data Feb 1 to Feb 2, 2007
-message("File data loaded into memory, subsetting for data range...")
-eda1data_subset <- eda1data_full[(eda1data_full$Date== dateFrom | data_full$Date== dateTo ), ]
+
+  message("File data being loaded into memory...")
+  eda1data_full <- read.table(dataFile, header=TRUE, na.strings="?", sep=";")
+
+
+  # subset the required data
+  # select the 2 day data Feb 1 to Feb 2, 2007
+  message("File data loaded into memory, subsetting for data range...")
+  eda1data_subset <- eda1data_full[(eda1data_full$Date== dateFrom | eda1data_full$Date== dateTo ), ]
 
 #date conversion
 eda1data_subset$Date <- as.Date(eda1data_subset$Date, format="%d/%m/%Y")

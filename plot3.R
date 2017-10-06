@@ -39,11 +39,12 @@ if (!file.exists(dataFile)) {
 dateTime <- paste(data$Date, data$Time)
 data$DateTime <- as.POSIXct(dateTime)
 
-# Just plot as line chart per assignment
+# Just plot as line chart per assignment, then add other lines, and legend
 with(data, plot(DateTime,Sub_metering_1, type = "l",col = "black", xlab = "", ylab = "Energy sub metering"))
 with(data, lines(DateTime, Sub_metering_2, col="red"))
 with(data, lines(DateTime, Sub_metering_3, col="blue"))
 legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col = c("black", "red", "blue"), lty="solid", cex=0.8)
+
 # export to a png file by copying
 message ("Copying plot to file")
 dev.copy(png, file=outPutFile, height=480, width=480)

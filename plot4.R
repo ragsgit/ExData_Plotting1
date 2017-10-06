@@ -44,23 +44,17 @@ dateTime <- paste(data$Date, data$Time)
 data$DateTime <- as.POSIXct(dateTime)
 
 
-# Just plot as line chart per assignment, then add other lines, and legend
-#1. hist(eda1data_subset$Global_active_power, main="Global Active Power 1/2/2007 to 2/2/2007", xlab="Global Active Power (kilowatts)", ylab="Frequency", col="Red")
-#2. plot(eda1data_subset$DateTime, eda1data_subset$Global_active_power, xlab = "", ylab = "Global Active Power (kilowatts)", type = "l")
-#3
-#with(data, plot(DateTime,Sub_metering_1, type = "l",col = "black", xlab = "", ylab = "Energy sub metering"))
-#with(data, lines(DateTime, Sub_metering_2, col="red"))
-#with(data, lines(DateTime, Sub_metering_3, col="blue"))
-#legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col = c("black", "red", "blue"), lty="solid", cex=0.8)
-
+#set up for 2x2
+par(mfrow=c(2,2))
+#reuse and combine plots from previous 3 exercices, and add the new 4th one
 with(data, {
   plot(DateTime, Global_active_power, xlab = "", ylab = "Global Active Power (kilowatts)", type = "l")
-  plot(DateTime, Voltage, xlab = "", ylab = "Voltage", type = "l")
+  plot(DateTime, Voltage, ylab = "Voltage", type = "l")
   plot(DateTime,Sub_metering_1, type = "l",col = "black", xlab = "", ylab = "Energy sub metering")
   lines(DateTime, Sub_metering_2, col="red")
   lines(DateTime, Sub_metering_3, col="blue")
   legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col = c("black", "red", "blue"), lty="solid", cex=0.8)
-  
+  plot(DateTime, Global_reactive_power, type = "l")
 })
 
 # export to a png file by copying

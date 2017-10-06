@@ -30,7 +30,6 @@ if (!file.exists(dataFile)) {
   message("File data being loaded into memory...")
   eda1data_full <- read.table(dataFile, header=TRUE, na.strings="?", sep=";")
 
-
   # subset the required data
   # select the 2 day data Feb 1 to Feb 2, 2007
   message("File data loaded into memory, subsetting for data range...")
@@ -42,7 +41,6 @@ dateTime <- paste(eda1data_subset$Date, eda1data_subset$Time)
 eda1data_subset$DateTime <- as.POSIXct(dateTime)
 
 # Just plot as line chart per assignment
-# using y ~ x
 plot(eda1data_subset$DateTime, eda1data_subset$Global_active_power, xlab = "", ylab = "Global Active Power (kilowatts)", type = "l")
 
 # export to a png file by copying
